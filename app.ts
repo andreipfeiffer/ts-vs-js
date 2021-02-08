@@ -1,34 +1,31 @@
 import axios from "axios";
 
-type User = {
-  name: string;
-  id: number;
-};
-
-type Order = User & {
-  total: number;
-};
+// type alias
+type User = { uid: number; name: string };
+type Order = User & { total: number; subtotal: number };
 
 let user: User;
 
 async function getUser() {
-  const response = await axios.get("/user");
+  const response = await axios.get<User>("/user");
   user = response.data;
 }
 
-function getPrice(value: number) {
-  const SHIPPING = Math.round(value) > 100 ? 0 : 5;
-  return value + SHIPPING;
-}
-
-function getOrder(current_user: User): Order {
+function getOrder(user: User): Order {
   const subtotal = +document.querySelector<HTMLInputElement>("#subtotal").value;
+  const total = getTotal(subtotal);
 
   return {
     ...user,
-    total: getPrice(subtotal),
+    total,
+    subtotal,
   };
 }
 
-const order = getOrder({ id: 1, name: "" });
-console.log(order.id);
+function getTotal(subtotal: number) {
+  const shipping = Math.round(subtotal) > 100 ? 0 : 5;
+  return subtotal + shipping;
+}
+
+const order = getOrder({ uid: 1, name: "Andrei" });
+order.name;

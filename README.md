@@ -15,6 +15,7 @@ npm i
 - show code-completion of `axios.get()`
 - explain `d.ts` files -> where they come from
 - paste the code in `.ts` -> see error
+- create `getUser()`, move axios inside
 - call the api in `.js` -> result type?
 - set explicit return type in `.ts`
 
@@ -25,6 +26,7 @@ npm i
 - create `getOrder()` function
 - read `subtotal` value from a DOM input
 - pass it to `getTotal()` to add shipping if > `Math.round(subtotal) > 100`
+- create `user` variable
 - everything works in `.js`, but you get type errors in `.ts`
 - add `noImplicitAny` in config
 - infer from usage, remove string, cast to number in consumer

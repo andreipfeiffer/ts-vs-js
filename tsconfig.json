@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    // "noImplicitAny": true
-    // "noUnusedLocals": true
+    "noImplicitAny": true,
+    "noUnusedLocals": true
   }
 }

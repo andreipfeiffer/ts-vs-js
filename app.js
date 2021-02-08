@@ -7,19 +7,21 @@ async function getUser() {
   user = response.data;
 }
 
-function getPrice(value) {
-  const SHIPPING = Math.round(value) > 100 ? 0 : 5;
-  return value + SHIPPING;
-}
-
-function getOrder(current_user) {
+function getOrder() {
   const subtotal = document.querySelector("#subtotal").value;
+  const total = getTotal(subtotal);
 
   return {
     ...user,
-    total: getPrice(subtotal),
+    total,
+    subtotal,
   };
 }
 
+function getTotal(subtotal) {
+  const shipping = Math.round(subtotal) > 100 ? 0 : 5;
+  return subtotal + shipping;
+}
+
 const order = getOrder();
-console.log(order.missing);
+order.missing;
