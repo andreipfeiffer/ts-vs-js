@@ -14,6 +14,7 @@ npm i
 - use axios in `.js`
 - show code-completion of `axios.get()`
 - explain `d.ts` files -> where they come from
+- explain JSDoc syntax alternative, but hand-written
 - paste the code in `.ts` -> see error
 - create `getUser()`, move axios inside
 - call the api in `.js` -> result type?
