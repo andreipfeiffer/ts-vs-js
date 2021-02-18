@@ -12,7 +12,8 @@ async function getUser() {
 }
 
 function getOrder(user: User): Order {
-  const subtotal = +document.querySelector<HTMLInputElement>("#subtotal").value;
+  const element = document.querySelector<HTMLInputElement>("#subtotal");
+  const subtotal = element ? +element.value : 0;
   const total = getTotal(subtotal);
 
   return {
