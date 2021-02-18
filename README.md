@@ -34,6 +34,12 @@ npm i
 
 <br />
 
+## String null checks
+
+- add `noImplicitAny` in config
+
+<br />
+
 ## Custom types / aliases (model/schema)
 
 - pass `{ id, name }` type to `axios`
