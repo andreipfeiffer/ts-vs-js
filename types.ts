@@ -65,7 +65,7 @@ export type Reservation = {
     addressLine2?: string;
     addressLine3?: string;
     city: string;
-    dateTime: Date;
+    dateTime: string;
     name?: string;
     office: {
       id: number;

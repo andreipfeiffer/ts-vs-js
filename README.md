@@ -1,6 +1,6 @@
 # TS vs. JS
 
-Teaches TypeScript benefits over vanilla JavaScript.
+TypeScript benefits over vanilla JavaScript.
 
 ```bash
 npm i
@@ -8,64 +8,50 @@ npm i
 
 <br />
 
-## Show TS benefits without using TS
+## 3rd party types
 
 - install 3rd party libs using TS, like `axios`
 - use axios in `.js`
 - show code-completion of `axios.get()`
 - explain `d.ts` files -> where they come from
-- explain JSDoc syntax alternative, but hand-written
 - paste the code in `.ts` -> see error
-- create `getUser()`, move axios inside
-- call the api in `.js` -> result type?
-- set explicit return type in `.ts`
 
-<br />
+## Own types
 
-## Type checking & inference
+- create `getProducts()`, move axios inside
+- call the api in `.js` -> show code-completion of `response.data`
+- type cannot be "guessed" for HTTP requests (read docs, execute + console.log, etc)
+- set explicit `Product[]` return type in `.ts`
 
-- create `getOrder()` function
-- read `subtotal` value from a DOM input
-- pass it to `getTotal()` to add shipping if > `Math.round(subtotal) > 100`
-- create `user` variable
+## Strict type-checking
+
+- create `getOrder(productId)` function in `.js`
+- find the product
+
+- read `quantity` value from a DOM input
+- calculate `total`
+- return `Order`
 - everything works in `.js`, but you get type errors in `.ts`
-- add `noImplicitAny` in config
-- infer from usage, remove string, cast to number in consumer
 
-<br />
+- fix DOM query for `value`
+- set `strict: true` to fix `productId` -> infer from usage
+- fix DOM query fallback
+- fix product find
 
-## String null checks
+- call `getOrder()` see error missing param
 
-- add `noImplicitAny` in config
+## Inferrence
 
-<br />
-
-## Custom types / aliases (model/schema)
-
-- pass `{ id, name }` type to `axios`
-- infer from usage
-- define custom `type User`
-
-<br />
-
-## Type-safety
-
-- manual rename -> get compile error
-- refactor rename
-
-<br />
+- see that we haven't specify types for: `products`, `product`, `price`, `order`
+- we only need to explicitly specify them at the border: _HTTP_, _DOM_, _3rd party_
+- add new field on order return, see it inferred
 
 ## Contracts
 
-- create new `type Order` (`User & total & subtotal`)
-- make it explicit in return type
-- see missing prop
-- add a new prop on type -> see contract violation
-- add argument `user` to function -> see contract violation
+- define explicit `Order` type, with `total` instead of `price` + without `quantity`
+- set it to `getOrder` -> see type errors
 
-<br />
+## Type-safety
 
-## Unused code
-
-- add `noUnusedLocals` in config
-- remove unused code
+- manual rename `id` in `uuid` -> get compile error
+- refactor rename `price` in `unitPrice`

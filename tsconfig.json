@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "strictNullChecks": true
+    "module": "esnext",
+    "moduleResolution": "Node16",
+    "target": "ES2017",
+    "strict": true,
+    "noUnusedLocals": true
   }
 }

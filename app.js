@@ -1,27 +1,26 @@
 import axios from "axios";
 
-let user;
+// [{ id: 1, name: "book", price: 10 }]
 
-async function getUser() {
-  const response = await axios.get("/user");
-  user = response.data;
+async function getProducts() {
+  const result = await axios.get("/products");
+  return result.data;
 }
 
-function getOrder() {
-  const subtotal = document.querySelector("#subtotal").value;
-  const total = getTotal(subtotal);
+async function getOrder(productId) {
+  const products = await getProducts();
+  const product = products.find((p) => p.id === productId);
+
+  const quantity = document.querySelector("input#quantity").valueAsNumber;
+
+  const price = product.price * quantity;
 
   return {
-    ...user,
-    total,
-    subtotal,
+    productId,
+    price,
+    quantity,
   };
 }
 
-function getTotal(subtotal) {
-  const shipping = Math.round(subtotal) > 100 ? 0 : 5;
-  return subtotal + shipping;
-}
-
-const order = getOrder();
-order.missing;
+const order = await getOrder(1);
+order.price;

@@ -1,32 +1,43 @@
 import axios from "axios";
 
-// type alias
-type User = { uid: number; name: string };
-type Order = User & { total: number; subtotal: number };
+// [{ id: 1, name: "book", price: 10 }]
 
-let user: User;
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+};
 
-async function getUser() {
-  const response = await axios.get<User>("/user");
-  user = response.data;
+type Order = {
+  productId: number;
+  quantity: number;
+  price: number;
+};
+
+async function getProducts() {
+  const result = await axios.get<Product[]>("/products");
+  return result.data;
 }
 
-function getOrder(user: User): Order {
-  const element = document.querySelector<HTMLInputElement>("#subtotal");
-  const subtotal = element ? +element.value : 0;
-  const total = getTotal(subtotal);
+async function getOrder(productId: number): Promise<Order> {
+  const products = await getProducts();
+  const product = products.find((p) => p.id === productId);
+
+  if (!product) {
+    throw `Product id ${productId} was not found!`;
+  }
+
+  const element = document.querySelector<HTMLInputElement>("input#quantity");
+  const quantity = element ? element.valueAsNumber : 0;
+
+  const price = product.price * quantity;
 
   return {
-    ...user,
-    total,
-    subtotal,
+    productId,
+    price,
+    quantity,
   };
 }
 
-function getTotal(subtotal: number) {
-  const shipping = Math.round(subtotal) > 100 ? 0 : 5;
-  return subtotal + shipping;
-}
-
-const order = getOrder({ uid: 1, name: "Andrei" });
-order.name;
+const order = await getOrder(1);
+order.price
