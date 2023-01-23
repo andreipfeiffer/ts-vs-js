@@ -1,5 +1,5 @@
 {
-  "name": "ts-intro",
+  "name": "type-safety-for-skeptics",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "0.21.1"
   }
 }
