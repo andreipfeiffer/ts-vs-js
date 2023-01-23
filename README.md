@@ -1,4 +1,4 @@
-# TS vs. JS
+# Type-Safety for skeptics
 
 TypeScript benefits over vanilla JavaScript.
 
