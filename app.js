@@ -1,7 +1,7 @@
 import axios from "axios";
 
-async function getReservation(id) {
-  const result = await axios.get(`/reservation/${id}`);
+async function getReservation() {
+  const result = await axios.get(`/reservation`);
   return result.data;
 }
 
