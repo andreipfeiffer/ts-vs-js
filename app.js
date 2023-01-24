@@ -1,5 +1,10 @@
 import axios from "axios";
 
+async function getReservation(id) {
+  const result = await axios.get(`/reservation/${id}`);
+  return result.data;
+}
+
 // [{ id: 1, name: "book", price: 10 }]
 
 async function getProducts() {

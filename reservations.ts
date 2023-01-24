@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export type Reservation = {
   id: number;
   voucher?: string;
@@ -111,13 +109,3 @@ export type Reservation = {
     price: number;
   };
 };
-
-export async function getTypedReservation(id: number) {
-  const result = await axios.get<Reservation>(`/reservation/${id}`);
-  return result.data;
-}
-
-export async function getUntypedReservation(id: number) {
-  const result = await axios.get(`/reservation/${id}`);
-  return result.data;
-}
